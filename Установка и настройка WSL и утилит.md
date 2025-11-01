@@ -101,7 +101,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 plugins=( [plugins...] zsh-syntax-highlighting)
 ```
 
-Установка плагина авто дополнений устанавливается схожим образом. Репозитарий -  https://github.com/zsh-users/zsh-autosuggestions.
+Установка плагина авто дополнений выполняется схожим образом. Репозитарий -  https://github.com/zsh-users/zsh-autosuggestions.
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
