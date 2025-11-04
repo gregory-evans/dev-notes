@@ -52,32 +52,55 @@ git config --global init.defaultBranch main
 
 ![image-20251105032401039](./attach/image-20251105032401039.png)
 
+## Использование SSH ключей
 
+По умолчанию `Git` использует протокол `https` для взаимодействия с сервером, это небезопасно и неудобно. Лучшим решением является использование другого протокола `ssh` или `git`, в которых для аутентификации используются сертификаты безопасности.
 
+В Linux (WSL) пары ключей находятся в директории `~/.ssh/`. Убедившись в их существовании или отсутствии можно определить наличие у вас ssh ключей.
 
+> В Windows ключи располагаются в директории `%homepath%\.ssh\`
 
+Если ключей нет, то их можно сгенерировать:
 
+```bash
+ssh-keygen -t ed25519 -C "my@email.com"
+```
 
-https://eu-digital.ru/articles/bitriks-virtualnaya-mashina/git-bez-parolya-polnoe-rukovodstvo-po-nastroyke-ssh-klyuchey/
+> Для RSA
+>
+> ```bash
+> ssh-keygen -t rsa -b 4096 -C "my@mail.com"
+> ```
+>
+> Однако, этот алгоритм считается менее надежным.
 
+Утилита спросит куда сохранять файлы - просто нажмите `Enter` (сохраните дефолтный путь). Пароль можно оставить пустым - это пароль от самого файла ключа, а не от github (можно установить для большей безопасности, но его придется вводить каждый раз при взаимодействии с сервером).
 
+В папке `~/.ssh/` появится два файла ключа, `id_ed25519` - приватный ключ и `id_ed25519.pub` - публичный ключ (его мы будем показывать).
 
-https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=linux&tool=cli
+Для добавления этого ключа на Github.com нужно выполнить следующие действия:
 
+Сначала скопируем содержимое публичного ключа в буфер обмена:
 
+```bash
+cat ~/.ssh/id_ed25519.pub | pbcopy
+```
 
-https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+Затем выполним на сайте:
 
+`Иконка профиля` -> `Settings` -> `В меню SSH and GPG keys` -> `New SSH key` -> `Заполнить все поля (Key = содержимое файла id_ed25519.pub)` -> `Add SSH key`.
 
+В завершении, переключим репозиторий на SSH протокол:
 
-https://git-scm.com/book/ru/v2/Git-%d0%bd%d0%b0-%d1%81%d0%b5%d1%80%d0%b2%d0%b5%d1%80%d0%b5-%d0%93%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d0%be%d1%82%d0%ba%d1%80%d1%8b%d1%82%d0%be%d0%b3%d0%be-SSH-%d0%ba%d0%bb%d1%8e%d1%87%d0%b0#r_generate_ssh_key
+```bash
+git remote set-url origin git@github.com:login/repo.git
+```
 
+Теперь `git push` должен пушить изменения в ваш удаленный репозиторий. Если устанавливали пароль на файл ключа в момент его создания придется его вводить при каждом пуше.
 
-
-https://docs.github.com/ru/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys
-
-
-
-#
-
-git remote set-url origin git@github.com:gregory-evans/dev-notes.git
+> Иногда может потребоваться явно добавить ключ в ssh агент:
+>
+> ```bash
+> eval "$(ssh-agent -s)" # если агент не запущен
+> ssh-add ~/.ssh/id_ed25519
+> ```
