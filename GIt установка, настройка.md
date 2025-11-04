@@ -56,14 +56,14 @@ git config --global init.defaultBranch main
 
 > В Windows ключи располагаются в директории `%homepath%\.ssh\`
 
-Если ключей нет, то их можно сгенерировать:
+Если ключей нет, то их необходимо сгенерировать:
 
 ```bash
 ssh-keygen -t ed25519 -C "my@email.com"
 ```
 
 > ```bash
-># если нужны RSA ключей
+># если нужны RSA ключи
 > ssh-keygen -t rsa -b 4096 -C "my@mail.com"
 > ```
 > 
