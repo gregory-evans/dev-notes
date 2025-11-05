@@ -126,15 +126,68 @@ git remote set-url origin git@github.com:login/repo.git
 | `git branch`                                              | Просмотр веток                                               |
 | `git checkout awesome_branch`                             | Переключение между ветками                                   |
 | `git merge awesome_branch`                                | Слияние текущей ветки с веткой `awesome_branch`              |
+| `git rebase main`                                         | Слияние и отбрасывание второй ветки                          |
 | `git branch -d awesome_branch`                            | Удаление ветки`awesome_branch`                               |
 | `git log`                                                 | Отслеживание изменений, сделанных в коммитах                 |
 | `git show <commit_id>`                                    | Просмотр информации о коммите. (Можно писать не весь номер коммита, а только первые несколько символов) |
 | `git diff <first_id>..<last_id>`                          | Разница между двумя коммитами                                |
 | `git checkout <commit_id> <fille>`                        | Возвращение файла к предыдущему состоянию                    |
+| `git rebase -i HEAD~6`                                    | Отбросить последниме 5 фиксаций. Использованна нотация - 6ой от последней фиксации. Также можно подставить ид фиксации. |
 | `git revert <commit_id>`                                  | Эта команда создаст коммит, отменяющий изменения, совершенные в коммите с заданным идентификатором. Самый последний коммит может быть доступен по алиасу **HEAD**. |
-|                                                           |                                                              |
-|                                                           |                                                              |
-|                                                           |                                                              |
-|                                                           |                                                              |
-|                                                           |                                                              |
 
+## .gitignore
+
+В этом файле указываются все исключенные из фиксации файлы и папки. Он должен быть создан вручную в папке с проектом.
+
+> **Пример .gitignore:**
+>
+> ```
+> *.log
+> build/
+> node_modules/
+> .idea/
+> my_notes.txt
+> ```
+
+## Примеры использования
+
+**Создание локального репозитория**
+
+```bash
+# создание папок и файлов
+mkdir my_project
+echo hello > hello.txt
+# инициализация репозитория
+git init
+# добавление файлов
+git add -A
+# первая фиксация
+git commit -m "Initial commit"
+# просмотр состояния
+git status
+```
+
+**Работа с удаленным репозиторием**
+
+```bash
+# клонирование репозитория
+git clone https://github.com/my-login/repo.git
+# подключение по ssh к нему
+git remote set-url origin git@github.com:my-login/repo.git
+# изменения
+cd repo
+echo print('hello') > hello.py
+git add hello.py
+git commit -m "Add hello.py"
+# выгрузка изменений в репозиторий
+git push origin main
+...
+# получение изменений из удаленного репозитория
+git pull origin main
+```
+
+
+
+
+
+> Официальная документация - https://git-scm.com/doc
