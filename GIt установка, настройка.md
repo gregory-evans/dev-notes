@@ -98,3 +98,5 @@ git remote set-url origin git@github.com:login/repo.git
 > eval "$(ssh-agent -s)" # если агент не запущен
 > ssh-add ~/.ssh/id_ed25519
 > ```
+
+Сгенерированные ключи можно сохранить в надежном месте. Для последующего использования их необходимо скопировать по пути `~/.ssh/` в Linux, WSL или `%homepath%\.ssh\` в Windows.
