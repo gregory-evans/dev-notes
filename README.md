@@ -1,4 +1,4 @@
 # dev-notes
 My some notes and articles.
 
-Установка и настройка WSL
+Установка и настройка WSL.md 
