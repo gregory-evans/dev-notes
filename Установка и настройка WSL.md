@@ -30,13 +30,13 @@ wsl --set-version Debian 2
 wsl.exe --update
 ```
 
-> ### Некоторые полезные данные:
+> Некоторые полезные данные:
 >
 > `wsl -l -v` - посмотреть список установленных машин.
 >
 > Для удаления WSL сначала удалите дистрибутив командой `wsl --unregister <имя_дистрибутива>`, а затем удалите само приложение WSL через «Параметры» > «Приложения» > «Приложения и возможности». Чтобы удалить все связанные с дистрибутивом файлы, можно также вручную очистить папку `%USERPROFILE%\\AppData\\Local\\Packages`
->
-> Документация по WSL: https://learn.microsoft.com/ru-ru/windows/wsl/
+
+Документация по WSL: https://learn.microsoft.com/ru-ru/windows/wsl/
 
 ## Установка и настройка Alacritty
 
@@ -49,7 +49,7 @@ mkdir C:\Users\igrif\AppData\Roaming\alacritty\themes
 
 Поместить файл настроек Alacritty `files\alacritty.toml`  в папку `C:\Users\igrif\AppData\Roaming\alacritty`, а содержимое каталога `files\alacritty-theme-master` в каталог `C:\Users\igrif\AppData\Roaming\alacritty\themes`.
 
-> Расположение тем для Alacritty можно получить из репозитория https://github.com/alacritty/alacritty-theme .
+> Темы для Alacritty можно получить из репозитория https://github.com/alacritty/alacritty-theme .
 
 Также необходимо установить недостающие шрифты `Hack Nerd Fonts` из папки `files\Hack` или скачать с сайта https://www.nerdfonts.com/font-downloads.
 

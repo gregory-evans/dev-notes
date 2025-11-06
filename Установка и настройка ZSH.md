@@ -1,6 +1,4 @@
-# Установка и настройка ZSH
-
-Установим шелл zsh:
+## Установка ZShell
 
 ```bash
 sudo apt install -y zsh
@@ -24,10 +22,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
 
 > Если мастер настройки не запустился автоматически или для переконфигурирования, можно запустить его вручную - `p10k configure`
 
+## Plugins
+
 Установим подсветку синтаксиса в zsh. 
-
 Репозиторий: https://github.com/zsh-users/zsh-syntax-highlighting.
-
 Установка для Oh-my-zsh:
 
 ```bash
@@ -40,7 +38,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 plugins=( [plugins...] zsh-syntax-highlighting)
 ```
 
-Установка плагина авто дополнений выполняется схожим образом. Репозитарий -  https://github.com/zsh-users/zsh-autosuggestions.
+Установка плагина авто дополнений выполняется схожим образом. 
+Репозитарий -  https://github.com/zsh-users/zsh-autosuggestions.
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
