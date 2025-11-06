@@ -37,6 +37,7 @@ git config --global init.defaultBranch main
 ```
 
 Проверим работоспособность:
+
 ![image-20251105032401039](./attach/image-20251105032401039.png)
 
 ## Использование SSH ключей
