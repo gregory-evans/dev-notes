@@ -183,7 +183,4 @@ git pull origin main
 ```
 
 
-
-
-
 > Официальная документация - https://git-scm.com/doc
