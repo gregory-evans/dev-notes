@@ -1,7 +1,6 @@
 # Установка и настройка WSL в Windows 10
 
 Сначала необходимо проверить включена ли возможность виртуализации на процессоре. Для этого открыть диспетчер задач (`Ctrl + Shift + Esc`, `Ctrl + Alt + Del`), на вкладке производительность выбрать `ЦП` и убедиться, что параметр `"Виртуализация"` в состоянии `Включено`. Если виртуализация находится в состоянии `"Отключено"`, тогда необходимо в `BIOS` (`UEFI`) включить данную возможность. Необходимо искать раздел `"Advanсed"` или `"CPU Configuration"`. Нужная нам опция часто называется `"Intel Virtualization Technology"` для процессоров Intel или `"SVM Mode"` для процессоров AMD.
-
 ## Установка WSL и дистрибутива Debian
 
 Открыть cmd.exe от имени администратора. Выполнить команду:
@@ -37,27 +36,41 @@ wsl.exe --update
 > Для удаления WSL сначала удалите дистрибутив командой `wsl --unregister <имя_дистрибутива>`, а затем удалите само приложение WSL через «Параметры» > «Приложения» > «Приложения и возможности». Чтобы удалить все связанные с дистрибутивом файлы, можно также вручную очистить папку `%USERPROFILE%\\AppData\\Local\\Packages`
 
 Документация по WSL: https://learn.microsoft.com/ru-ru/windows/wsl/
+## Alacritty
 
-## Установка и настройка Alacritty
+В качестве эмулятора терминала я использую Alacritty. Это небольшое и быстрое приложение с достаточным количеством возможностей для удобной работы. К тому же кроссплатформенное.
+Скачать можно с сайта [Alacritty](https://alacritty.org/). Установка тривиальна. 
 
-Создадим папки для конфигурации Alacritty:
+### Настройки
 
-```cmd
-mkdir C:\Users\igrif\AppData\Roaming\alacritty
-mkdir C:\Users\igrif\AppData\Roaming\alacritty\themes
+После установки необходимо создать файл настроек - `alacritty.toml`. В Windows он должен находится по пути `C:\Users\user_name\AppData\Roaming\alacritty`.  О доступных опциях и правилах создания этого файла можно прочитать на [странице документации](https://alacritty.org/config-alacritty.html) или в репозитории на [GitHub](https://github.com/alacritty/alacritty)
+Также можно взять готовый файл конфигурации. Многие разработчики предоставляют свои конфигурации для использования на GitHub. Например, мою конфигурацию можно найти в репозитории https://github.com/gregory-evans/conf-files.git в папке alacritty.
+
+```bash
+git clone https://github.com/gregory-evans/conf-files.git
+
+mkdir /mnt/c/Users/user_name/AppData/Roaming/alacritty
+
+cp "./conf-files/alacritty/alacritty.toml" "/mnt/c/Users/user_name/AppData/Roaming/alacritty"
 ```
 
-Поместить файл настроек Alacritty `files\alacritty.toml`  в папку `C:\Users\igrif\AppData\Roaming\alacritty`, а содержимое каталога `files\alacritty-theme-master` в каталог `C:\Users\igrif\AppData\Roaming\alacritty\themes`.
+### Темы
 
-> Темы для Alacritty можно получить из репозитория https://github.com/alacritty/alacritty-theme .
+Далее можно установить темы для Alacritty. Для этого клонируем репозиторий https://github.com/alacritty/alacritty-theme.git в директорию `/mnt/c/Users/user_name/AppData/Roaming/alacritty/themes`
 
-Также необходимо установить недостающие шрифты `Hack Nerd Fonts` из папки `files\Hack` или скачать с сайта https://www.nerdfonts.com/font-downloads.
+```bash
+mkdir /mnt/c/Users/user_name/AppData/Roaming/alacritty/themes
 
-Теперь можно установить программу `Alacritty`. Дистрибутив находится в директории `files\Alacritty-v0.16.1-installer.msi` или скачать актуальную версию с сайта https://alacritty.org/.
+cd /mnt/c/Users/user_name/AppData/Roaming/alacritty/themes
 
-> Можно также использовать Windows Terminal:
->
-> https://apps.microsoft.com/detail/9n0dx20hk701?hl=ru-RU&gl=RU
+git clone https://github.com/alacritty/alacritty-theme.git
+```
+
+После чего в файле настроек указать выбранную тему. В папке с темами (в репозитории) представлен файл `Readme.md` в котором есть скрины всех тем.
+
+### Шрифт
+
+Также необходимо установить недостающие шрифты `Hack Nerd Fonts`, предварительно скачав их https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip.
 
 ## Настройка копирования в буфер обмена Windows
 
@@ -67,7 +80,7 @@ mkdir C:\Users\igrif\AppData\Roaming\alacritty\themes
 echo "Hello" | clip.exe
 ```
 
-Но, к сожалению, копирование кириллических символов выполняется со сбоем кодировки. Поэтому лучше использовать другую утилиту, не имеющую такой проблемы: `win32yanc.exe`. Её можно получить из репозитория на гитхабе https://github.com/equalsraf/win32yank/.
+Но, к сожалению, копирование кириллических символов выполняется со сбоем кодировки. Поэтому лучше использовать другую утилиту, не имеющую такой проблемы: `win32yanc.exe`. Её можно получить из репозитория на GitHub - https://github.com/equalsraf/win32yank/.
 
 После скачивания, необходимо переместить исполняемый файл в любую директорию Windows находящуюся в переменной `Path`, например `C:\WINDOWS\System32`. С этого момента станет доступна операция копирования в буфер обмена Windows включая кириллические символы
 
@@ -75,21 +88,17 @@ echo "Hello" | clip.exe
 echo "Привет" | win32yank.exe
 ```
 
-В Linux для выполнения такой операция служит утилита `pbcopy`, поэтому для удобства добавим алиас для этой команды в шелл. 
-
+В Linux для выполнения такой операция служит утилита `pbcopy`, поэтому для удобства добавим псевдоним для этой команды:
 ```bash
 #~.zshrc
 [...]
 alias pbcopy="win32yank.exe -i"
 ```
 
-> Получить содержимое буфера обмена в консоль можно командой `win32yank.exe -o`
->
-> Также можно создать алиас:
->
-> ```bash
-> #~.zshrc
-> [...]
-> alias pbpaste="win32yank.exe -o"
-> ```
+Получить содержимое буфера обмена в консоль можно командой `win32yank.exe -o`. Также можно создать псевдоним:
+ ```bash
+ #~.zshrc
+ [...]
+ alias pbpaste="win32yank.exe -o"
+ ```
 
