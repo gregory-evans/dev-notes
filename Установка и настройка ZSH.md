@@ -1,3 +1,4 @@
+> О Git можно почитать - [[Git - установка, настройка, использование]]
 ## Установка ZShell
 
 ```bash
@@ -9,6 +10,8 @@ sudo apt install -y zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+
+## Theme
 
 Далее установим тему оформления (powerlevel10k). Информация и файлы находятся в репозитории https://github.com/romkatv/powerlevel10k. Установку будем производить через OhMyZsh.
 
@@ -50,3 +53,5 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 ```bash
 plugins=( [plugins...] zsh-autosuggestions)
 ```
+
+![[Pasted image 20251108014616.png]]
