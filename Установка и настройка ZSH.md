@@ -54,4 +54,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 plugins=( [plugins...] zsh-autosuggestions)
 ```
 
-![[Pasted image 20251108014616.png]]
+![image-20251105032401039](./attach/image-20251105032401039.png)
+
+Далее можно установить удобные утилиты для командной строки - [[Установка и настройка утилит командной строки]]
