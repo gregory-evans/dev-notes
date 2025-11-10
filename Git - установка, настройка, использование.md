@@ -38,7 +38,16 @@ git config --global init.defaultBranch main
 
 Проверим работоспособность:
 
-![image-20251105032401039](./attach/image-20251105032401039.png)
+```bash
+mkdir test_rep; cd test_rep
+git init
+echo Hello > hello.txt
+git add -A
+git status
+git commit -m "Initial comment"
+git status
+
+```
 
 ## Использование SSH ключей
 По умолчанию `Git` использует протокол `https` для взаимодействия с сервером, это небезопасно и неудобно. Лучшим решением является использование другого протокола `ssh` или `git`, в которых для аутентификации используются сертификаты безопасности.
@@ -84,7 +93,7 @@ git remote set-url origin git@github.com:login/repo.git
  ```bash
 # Проверить подключение можно командой:
 ssh -T git@github.com
-```
+ ```
 
 *Иногда (в случае ошибок) может потребоваться явно добавить ключ в ssh агент:*
 ```bash
