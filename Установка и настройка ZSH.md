@@ -57,4 +57,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 plugins=( [plugins...] zsh-autosuggestions)
 ```
 
+> Проверить корректность файла настроек `~/.zshrc` можно командой `zsh -n ~/.zshrc`
+
 Далее можно установить удобные утилиты для командной строки - [Утилиты командной строки](Установка и настройка утилит командной строки.md)
